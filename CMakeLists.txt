@@ -112,6 +112,27 @@ catkin_package(
 ## Build ##
 ###########
 
+set(TALKER_NODE_NAME talker.cpp)
+set(TALKER_NODE_SRC src/talker.cpp)
+
+add_executable(${TALKER_NODE_NAME} ${TALKER_NODE_SRC})
+
+add_dependencies(${TALKER_NODE_NAME}${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(${TALKER_NODE_NAME} ${catkin_LIBRARIES} )
+
+
+set(LISTENER_NODE_NAME listener.cpp)
+set(LISTENER_NODE_SRC src/listener.cpp)
+
+add_executable(${LISTENER_NODE_NAME} ${LISTENER_NODE_SRC})
+
+add_dependencies(${LISTENER_NODE_NAME}${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(${LISTENER_NODE_NAME} ${catkin_LIBRARIES} )
+
+
+
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(

@@ -1,0 +1,12 @@
+<launch>
+	<arg name="new_topic_name" default="new_chatter" />
+	
+	<group ns="new_ns">
+		<node name="talker_cpp" pkg="study_pkg" type="talker.cpp" output="screen">
+			<remap from="my_chat_topic" to="$(arg new_topic_name)"/>
+		</node>
+		<node name="rlistener_cpp" pkg="study_pkg" type="listener.cpp" output="screen">
+			<remap from="my_chat_topic" to="$(arg new_topic_name)"/>
+		</node>
+	</group>
+</launch>
