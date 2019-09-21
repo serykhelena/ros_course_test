@@ -1,0 +1,13 @@
+<launch>
+	<arg name="new_topic_name" default="cpp_chatter" />
+
+	<group ns="my_ns">
+		<node name="control_talker" pkg="study_pkg" type="control_talker" output="screen">
+			<remap from="cpp_chatter" to="$(arg new_topic_name)"/>
+		</node>
+
+		<node name="control_talker_py" pkg="study_pkg" type="control_talker_py.py" output="screen">
+			<remap from="my_chat_topic" to="$(arg new_topic_name)"/>
+		</node>
+	</group>
+</launch>
