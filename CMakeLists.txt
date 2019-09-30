@@ -13,6 +13,8 @@ find_package(
   rospy
   std_msgs
   message_generation
+  tf
+  turtlesim
 )
 
 ## System dependencies are found with CMake's conventions
@@ -99,10 +101,17 @@ add_message_files(
 	Control.msg
 )
 
+add_service_files(
+	FILES
+	Poly.srv
+)
+
 generate_messages(
 	DEPENDENCIES
 	std_msgs
 )
+
+
 
 ###################################
 ## catkin specific configuration ##
@@ -152,6 +161,23 @@ add_dependencies(${CONTROL_TALKER_NODE_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS}
 
 target_link_libraries(${CONTROL_TALKER_NODE_NAME} ${catkin_LIBRARIES} )
 
+set(POLY_SERVICE_NODE_NAME poly_service_cpp)
+set(POLY_SERVICE_SRC src/poly_service_cpp)
+
+add_executable(${POLY_SERVICE_NODE_NAME} ${POLY_SERVICE_SRC})
+
+add_dependencies(${POLY_SERVICE_NODE_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(${POLY_SERVICE_NODE_NAME} ${catkin_LIBRARIES} )
+
+set(POLY_RESPONSE_SERVICE_NODE_NAME poly_response_cpp)
+set(POLY_RESPONSE_SRC src/poly_response_cpp)
+
+add_executable(${POLY_RESPONSE_SERVICE_NODE_NAME} ${POLY_RESPONSE_SRC})
+
+add_dependencies(${POLY_RESPONSE_SERVICE_NODE_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(${POLY_RESPONSE_SERVICE_NODE_NAME} ${catkin_LIBRARIES} )
 
 
 ## Specify additional locations of header files
