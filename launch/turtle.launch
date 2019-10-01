@@ -16,6 +16,13 @@
 
 		<node pkg="tf" type="static_transform_publisher" name="car_2_camera_tf" args="0.1 0.8 0.2 0 0 0 turtle1 carrot 100" />
 
+		<node name="turtle2_tf_broadcaster" pkg="study_pkg" type="turtle_tf_broadcaster.py" output="screen" >
+			<param name="turtle_tf_name" type="string" value="turtle2" />
+			<remap from="input_pose" to="turtle2/pose" />
+		</node>
+
+		<node name="turtle_tf_listener" pkg="study_pkg" type="turtle_tf_listener.py" output="screen" />
+
 		<node pkg="rviz" type="rviz" name="rviz" />
 	</group>
 </launch>
